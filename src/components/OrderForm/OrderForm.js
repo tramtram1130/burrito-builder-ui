@@ -6,7 +6,8 @@ class OrderForm extends Component {
     this.props = props;
     this.state = {
       name: '',
-      ingredients: []
+      ingredients: [],
+      error: ''
     };
   }
 
@@ -22,8 +23,14 @@ class OrderForm extends Component {
 
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.clearInputs();
+    e.preventDefault()
+    if (this.state.name && this.state.ingredients.length) {
+      const newOrder = {...this.state}
+      this.props.addNewOrder(newOrder)
+      this.clearInputs()
+    } else {
+      this.setState({ error: 'Could not post order' })
+    }
   }
 
   clearInputs = () => {
