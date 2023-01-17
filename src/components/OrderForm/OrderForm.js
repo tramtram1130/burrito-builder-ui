@@ -10,6 +10,16 @@ class OrderForm extends Component {
     };
   }
 
+  handleIngredientChange = (e) => {
+    e.preventDefault()
+    const newIngredient = e.target.name
+    this.setState({ ingredients: [...this.state.ingredients, newIngredient] })
+  }
+
+  handleNameChange = (e) => {
+    this.setState({ name: e.target.value })
+  }
+
 
   handleSubmit = e => {
     e.preventDefault();
